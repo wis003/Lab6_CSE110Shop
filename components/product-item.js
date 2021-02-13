@@ -4,7 +4,6 @@ class ProductItem extends HTMLElement {
   constructor() {
     super();
     let shadow = this.attachShadow({mode: 'open'});
-    let added = false;
     shadow.innerHTML = `
     <style>
     .price {
@@ -72,13 +71,25 @@ class ProductItem extends HTMLElement {
     }
     </style>
     <li class="product">
-      <img class="img-info" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops" width=200>
-      <p class="title">Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops</p>
-      <p class="price">$109.95</p>
-      <button class="cart" onclick="alert('Added to Cart!')">Add to Cart</button>
+      <img id="img-info" class="img-info" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops" width=200>
+      <p id="title" class="title">Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops</p>
+      <p id="price" class="price">$109.95</p>
+      <button id="cart" class="cart" onclick="alert('Added to Cart!')">Add to Cart</button>
     </li>
     `;
 
+  }
+  set imgInfo(alt) {
+    this.shadowRoot.getElementById("img-info").alt = alt;
+  }
+  set productTitle(title) {
+    this.shadowRoot.getElementById("title").innerHTML = title;
+  }
+  set productPrice(price) {
+    this.shadowRoot.getElementById("price").innerHTML = "$" + price;
+  }
+  set imgSrc(src) {
+    this.shadowRoot.getElementById("img-info").src = src;
   }
 }
 
